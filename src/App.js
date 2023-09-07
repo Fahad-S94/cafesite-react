@@ -6,6 +6,7 @@ import HomePage from './pages/Homepage';
 import ContactPage from './pages/ContactPage';
 import AboutPage from './pages/AboutPage';
 import MenuPage from './pages/MenuPage';
+import CartPage from './pages/CartPage';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             element={<CampsiteDetailPage />}
         /> */}
         <Route path='about' element={<AboutPage />} />
+        <Route path='cart' element={<CartPage />} />
       </Routes>
       <Footer />
     </div>

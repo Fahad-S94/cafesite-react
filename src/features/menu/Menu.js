@@ -12,10 +12,18 @@ import {
   Button,
   Nav,
   Container,
+  CardImg,
+  CardBody,
+  CardSubtitle
 } from 'reactstrap';
+import { MENU } from '../../app/shared/MENU'
+import { addItemToCart } from '../cart/cartSlice';
+
 
 const Menu = () => {
-  const [activeTab, setActiveTab] = useState('1');
+  const menuItems = MENU
+
+  const [activeTab, setActiveTab] = useState('All');
 
   const toggleTab = (tab) => {
     if (activeTab !== tab) {
@@ -24,57 +32,75 @@ const Menu = () => {
   };
 
   return (
-    <Container className="menu-container">
-      <Nav tabs className="menu-tabs justify-content-center">
+    <Container className="">
+      <Nav className='justify-content-center' tabs>
         <NavItem>
           <NavLink
-            className={activeTab === '1' ? 'active' : ''}
-            onClick={() => toggleTab('1')}
+            className={activeTab === 'All' ? 'active' : ''}
+            onClick={() => toggleTab('All')}
           >
-            Tab1
+            All
           </NavLink>
         </NavItem>
         <NavItem>
           <NavLink
-            className={activeTab === '2' ? 'active' : ''}
-            onClick={() => toggleTab('2')}
+            className={activeTab === 'Hot Drinks' ? 'active' : ''}
+            onClick={() => toggleTab('Hot Drinks')}
           >
-            More Tabs
+            Hot Drinks
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink
+            className={activeTab === 'Cold Drinks' ? 'active' : ''}
+            onClick={() => toggleTab('Cold Drinks')}
+          >
+            Cold Drinks
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink
+            className={activeTab === 'Deserts' ? 'active' : ''}
+            onClick={() => toggleTab('Deserts')}
+          >
+            Deserts
           </NavLink>
         </NavItem>
       </Nav>
       <TabContent activeTab={activeTab}>
-        <TabPane tabId="1">
-          <Row>
-            <Col sm="12">
-              <h4 className="text-center">Tab 1 Contents</h4>
-            </Col>
-          </Row>
-        </TabPane>
-        <TabPane tabId="2">
-          <Row>
-            <Col sm="6">
-              <Card body>
-                <CardTitle>Special Title Treatment</CardTitle>
-                <CardText>
-                  With supporting text below as a natural lead-in to additional
-                  content.
-                </CardText>
-                <Button>Go somewhere</Button>
-              </Card>
-            </Col>
-            <Col sm="6">
-              <Card body>
-                <CardTitle>Special Title Treatment</CardTitle>
-                <CardText>
-                  With supporting text below as a natural lead-in to additional
-                  content.
-                </CardText>
-                <Button>Go somewhere</Button>
-              </Card>
-            </Col>
-          </Row>
-        </TabPane>
+        {['All', 'Hot Drinks', 'Cold Drinks', 'Deserts'].map((category) => (
+          <TabPane key={category} tabId={category}>
+            <Row justify-content-center>
+              {menuItems
+                .filter((item) => item.category === category || category === 'All')
+                .map((menuItem) => (
+                  <Col key={menuItem.id} lg="3" md="6">
+                    <Card className="featured-item">
+                      <CardImg top src={menuItem.imgSrc} alt="Images" />
+                      <CardBody>
+                        <CardTitle><a href="#">{menuItem.name}</a></CardTitle>
+                        <hr />
+                        <CardSubtitle>${menuItem.price.toFixed(2)}</CardSubtitle>
+                        <span>({menuItem.rating})<i className="fa fa-star"></i></span>
+                        <hr />
+                        <div className="featured-content-list">
+                          <Button
+                            type="button"
+                            data-name={menuItem.name}
+                            data-price={menuItem.price.toFixed(2)}
+                            className="default-btn border-radius-5"
+                            onClick={() => addItemToCart(menuItem)} // Dispatch addItemToCart action
+                          >
+                            Add to cart
+                          </Button>
+                        </div>
+                      </CardBody>
+                    </Card>
+                  </Col>
+                ))}
+            </Row>
+          </TabPane>
+        ))}
       </TabContent>
     </Container>
   );

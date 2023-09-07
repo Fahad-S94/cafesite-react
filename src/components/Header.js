@@ -37,6 +37,11 @@ const Header = () => {
                             <i className="fa fa-home fa-lg" /> Contact
                         </NavLink>
                     </NavItem>
+                    <NavItem>
+                        <NavLink className="nav-link" to='/cart'>
+                            <i className="fa fa-home fa-lg" /> Cart
+                        </NavLink>
+                    </NavItem>
                 </Nav>
             </Collapse>
         </Navbar>
