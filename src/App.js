@@ -13,16 +13,11 @@ function App() {
     <div className="App">
       <Header />
       <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route path='menu' element={<MenuPage />} />
-        <Route path='contact' element={<ContactPage />} />
-        {/* <Route path='directory' element={<CampsitesDirectoryPage />} /> */}
-        {/* <Route
-            path='directory/:campsiteId'
-            element={<CampsiteDetailPage />}
-        /> */}
-        <Route path='about' element={<AboutPage />} />
-        <Route path='cart' element={<CartPage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="menu" element={<MenuPage />} />
+        <Route path="contact" element={<ContactPage />} />
+        <Route path="about" element={<AboutPage />} />
+        <Route path="cart" element={<CartPage />} />
       </Routes>
       <Footer />
     </div>

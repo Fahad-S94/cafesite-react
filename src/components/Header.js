@@ -7,7 +7,7 @@ const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false)
 
     return (
-        <Navbar dark color="primary" sticky="top" expand="md">
+        <Navbar dark color="warning" expand="md">
             <NavbarBrand className="ms-5" href="/">
                 <img src={LogoImg} alt="Cafe Bresil Logo" className="float-start"/>
                 <h1 className="mt-1">Cafe Breasil</h1>

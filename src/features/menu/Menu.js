@@ -22,8 +22,9 @@ import { addItemToCart } from '../cart/cartSlice';
 
 const Menu = () => {
   const menuItems = MENU
-
   const [activeTab, setActiveTab] = useState('All');
+
+  const [menuSpace, setMenuSpace] = useState(1)
 
   const toggleTab = (tab) => {
     if (activeTab !== tab) {
